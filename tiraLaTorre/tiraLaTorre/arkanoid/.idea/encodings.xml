@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/animacion_bola.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animacioncocodrilo.plist" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animacioncocodrilo.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animacionkoala.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animacionmono.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animacionpanda.plist" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animacionpanda.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animaciontigre.plist" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/animaciontigre.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/barra_1.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/barra_2.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/barra_3.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/bola.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/cocodrilo_1.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/fondo.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/fps_images.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/grunt.wav" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/res/powerup.png" charset="windows-1252" />
+  </component>
+</project>
