@@ -1,4 +1,8 @@
 
+var numBloquesGlobal = 0;
+var velocidadPelotaX = 0;
+var velocidadPelotaY = 0;
+
 var GameLayer = cc.Layer.extend({
     spritePelota:null,
     spriteBarra:null,
@@ -6,11 +10,12 @@ var GameLayer = cc.Layer.extend({
     velocidadX:null,
     velocidadY:null,
     spriteBloque:null,
+    numeroBloques:null,
     arrayBloques:[],
     ctor:function () {
         this._super();
 
-
+        console.log("Ejecutada gameLayer");
         var size = cc.winSize;
 
         // cachear
@@ -18,9 +23,22 @@ var GameLayer = cc.Layer.extend({
         cc.spriteFrameCache.addSpriteFrames(res.animacionpanda_plist);
         cc.spriteFrameCache.addSpriteFrames(res.animaciontigre_plist);
 
+        this.numeroBloques = numBloquesGlobal + Math.floor(Math.random()*10);
+        numBloquesGlobal = this.numeroBloques;
 
-        this.velocidadX = 6;
-        this.velocidadY = 3;
+        this.velocidadX = velocidadPelotaX + Math.floor(Math.random()*(6)+1);
+        this.velocidadY = velocidadPelotaY + Math.floor(Math.random()*(3)+1);
+
+        velocidadPelotaX = this.velocidadX;
+        velocidadPelotaY = this.velocidadY;
+
+
+        console.log("Bloques globales : "+numBloquesGlobal);
+        console.log("Vel x global : " + velocidadPelotaX);
+        console.log("Vel y global : " + velocidadPelotaY);
+        console.log("bloques en la Layer : " + this.numeroBloques);
+        console.log("velocidad x en la layer : " + this.velocidadX);
+        console.log("velocidad y en la layer : " + this.velocidadY);
 
         var spriteFondo = cc.Sprite.create(res.fondo_png);
         spriteFondo.setPosition(cc.p(size.width/2 , size.height/2));
@@ -178,6 +196,13 @@ var GameLayer = cc.Layer.extend({
                   this.velocidadY = this.velocidadY*-1;
               }
 
+              if(this.arrayBloques.length <=0 ){
+                 cc.director.pause();
+                 cc.audioEngine.stopMusic();
+                 this.getParent().addChild(new SiguienteNivel());
+
+              }
+
 
 
               // Rebote
@@ -194,9 +219,6 @@ var GameLayer = cc.Layer.extend({
                   cc.director.pause();
                   cc.audioEngine.stopMusic();
                   this.getParent().addChild(new GameOverLayer());
-
-
-
               }
               if (this.spritePelota.y > cc.winSize.height - mitadAlto){
                   this.spritePelota.y = cc.winSize.height - mitadAlto;
@@ -204,6 +226,8 @@ var GameLayer = cc.Layer.extend({
               }
 
     }, inicializarBloques:function() {
+
+            //bloques aleatorios
             var insertados = 0;
             var fila = 0;
             var columna = 0;
@@ -231,8 +255,8 @@ var GameLayer = cc.Layer.extend({
                 }
             var animacionBloquePanda = new cc.Animation(framesBloquePanda, 0.1);
 
-            while (insertados < 50 ){
-                var numero = Math.floor(Math.random()*3);
+            while (insertados < this.numeroBloques ){
+                numero = Math.floor(Math.random()*3);
                 //repetir constantemente la animacion
                 var animacion = "";
                 var accionAnimacionBloque = null;
@@ -260,7 +284,6 @@ var GameLayer = cc.Layer.extend({
                               ( spriteBloqueActual.width * columna );
                 var y = (cc.winSize.height - spriteBloqueActual.height/2 ) -
                               ( spriteBloqueActual.height * fila );
-                console.log("Insertado en: "+x+" ,"+y);
 
                 spriteBloqueActual.setPosition(cc.p(x,y));
 
@@ -286,9 +309,34 @@ var GameScene = cc.Scene.extend({
         this._super();
         cc.director.resume();
         cc.audioEngine.playMusic(res.sonidobucle_wav, true);
+        numBloquesGlobal = 0;
+        velocidadPelotaX = 0;
+        velocidadPelotaY = 0;
+
+        console.log("Bloques globales : "+numBloquesGlobal);
+        console.log("Vel x global : " + velocidadPelotaX);
+        console.log("Vel y global : " + velocidadPelotaY);
+
+        console.log("Ejecutada gameScene");
 
         var layer = new GameLayer();
         this.addChild(layer);
     }
 });
 
+var GameContinueScene = cc.Scene.extend({
+    onEnter:function () {
+        this._super();
+        cc.director.resume();
+        cc.audioEngine.playMusic(res.sonidobucle_wav, true);
+
+        console.log("Bloques globales : "+numBloquesGlobal);
+        console.log("Vel x global : " + velocidadPelotaX);
+        console.log("Vel y global : " + velocidadPelotaY);
+
+        console.log("Ejecutada continueScene");
+
+        var layer = new GameLayer();
+        this.addChild(layer);
+    }
+});

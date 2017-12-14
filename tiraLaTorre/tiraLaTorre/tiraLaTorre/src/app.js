@@ -1,7 +1,6 @@
 
 var tipoMuro = 2;
 var tipoBloque = 3;
-//var tiradas = 3;
 
 
 var GameLayer = cc.Layer.extend({
@@ -27,9 +26,6 @@ var GameLayer = cc.Layer.extend({
         //debug
         this.depuracion = new cc.PhysicsDebugNode(this.space);
         this.addChild(this.depuracion, 10);
-
-
-
 
         // Muros
         var muroIzquierda = new cp.SegmentShape(this.space.staticBody,
@@ -57,10 +53,6 @@ var GameLayer = cc.Layer.extend({
         muroAbajo.setFriction(1);
         muroAbajo.setCollisionType(tipoMuro);
         this.space.addStaticShape(muroAbajo);
-
-
-
-
 
         // muro y bloque
         // muro y bloque
@@ -166,7 +158,7 @@ var GameLayer = cc.Layer.extend({
                 }
 
             }
-
+             //comprobamos las tiradas
             if ( this.tiempo != 0 && (new Date().getTime() - this.tiempo) > 10000  && todosSinMoverse){
                 if(this.tiradas > 0){
                     console.log("reiniciamos la posicion de la pelota");
